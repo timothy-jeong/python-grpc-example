@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package member;
+
+
+message MemberResponse {
+    string member_id = 1;
+    string member_name = 2;
+}

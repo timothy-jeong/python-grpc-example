@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package member;
+
+import "message/member_request.proto";
+import "message/member_response.proto";
+
+service MemberService {
+    rpc GetMember (MemberRequest) returns (MemberResponse);
+}
