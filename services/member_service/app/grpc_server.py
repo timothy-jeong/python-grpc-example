@@ -14,7 +14,6 @@ class MemberServiceServicerImpl(MemberServiceServicer):
     async def GetMember(self, request: member_request_pb2.MemberRequest, context):
         async with async_session() as db:
             result = await db.execute(
-                # TODO request 로 들어오는건 str 인데, MemberModel.id 는 UUID 이다.
                 select(MemberModel).where(MemberModel.id == uuid.UUID(request.member_id))
             )
             member = result.scalars().first()
@@ -30,10 +29,8 @@ class MemberServiceServicerImpl(MemberServiceServicer):
         )
 
 async def init_db():
-    """데이터베이스 초기화: 테이블이 없으면 생성합니다."""
     async with engine.begin() as conn:
         await conn.run_sync(BaseModelDeclarative.metadata.create_all)
-    # 초기화 후 별도의 리소스 정리는 필요하지 않습니다.
 
 async def serve():
     await init_db()
