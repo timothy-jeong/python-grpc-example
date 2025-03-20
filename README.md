@@ -63,7 +63,7 @@ cd <YOUR_PROJECT_DIRECTORY>
 
 2. **Docker Compose 실행**
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 3. **서비스 확인**
